@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<package format="2">
+  <name>template_package</name>
+  <version>0.0.0</version>
+  <description>The template_package package</description>
+  <maintainer email="gderose@ltu.edu">gderose</maintainer>
+  <license>BSD</license>
+
+  <buildtool_depend>catkin</buildtool_depend>
+  <depend>cv_bridge</depend>
+  <depend>dynamic_reconfigure</depend>
+  <depend>image_transport</depend>
+  <depend>roscpp</depend>
+  <depend>rospy</depend>
+  <depend>sensor_msgs</depend>
+  <depend>std_msgs</depend>
+
+  <export>
+  </export>
+</package>
