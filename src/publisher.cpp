@@ -135,7 +135,7 @@ PublishNode::~PublishNode()
 
 /******************************************************************************
 *
-* Dynamics Reconfigure
+* Dynamic Reconfigure
 *
 ******************************************************************************/
 void PublishNode::configCallback(template_package::PublishNodeDynCfgConfig
@@ -164,7 +164,10 @@ void PublishNode::publish_int_message()
   msg.data = counter_;
     
   // Publish message
-  pub_int_.publish(msg);
+  if( counter_ < 1000 )
+    {
+      pub_int_.publish(msg);
+    }
 
   // Increment integer counter
   counter_++;
@@ -184,7 +187,7 @@ void PublishNode::publish_str_message()
   // Build string
   int n = sprintf(buf, "Counter = %d", counter_ );
   
-  // Define messages
+  // Define message
   std_msgs::String msg;
   msg.data = buf;
     

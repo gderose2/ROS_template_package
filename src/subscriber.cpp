@@ -19,6 +19,7 @@
 // Include C/C++ standard libraries
 #include <stdio.h>
 #include <math.h>
+#include <unistd.h>
 
 // Define constants
 #define CVWIN_PREVIEW "Target Object"
@@ -129,7 +130,7 @@ SubscribeNode::~SubscribeNode()
 
 /******************************************************************************
 *
-* Dynamics Reconfigure
+* Dynamic Reconfigure
 *
 ******************************************************************************/
 void SubscribeNode::configCallback(template_package::SubscribeNodeDynCfgConfig
@@ -153,7 +154,7 @@ void SubscribeNode::configCallback(template_package::SubscribeNodeDynCfgConfig
 ///////////////////////////////////////////////////////////////////////
 void SubscribeNode::int_message_callback(const std_msgs::Int32::ConstPtr &msg)
 {
-  // ROS_INFO("Recieved int = %d", msg->data);
+  ROS_INFO("Recieved int = %d", msg->data);
   return;
 }
 
@@ -164,6 +165,7 @@ void SubscribeNode::int_message_callback(const std_msgs::Int32::ConstPtr &msg)
 void SubscribeNode::str_message_callback(const std_msgs::String::ConstPtr &msg)
 {
   // ROS_INFO("Recieved str = %s", msg->data.c_str());
+  // sleep(2);
   return;
 }
 
@@ -174,7 +176,6 @@ void SubscribeNode::str_message_callback(const std_msgs::String::ConstPtr &msg)
 ///////////////////////////////////////////////////////////////////////////
 void SubscribeNode::img_message_callback(const sensor_msgs::ImageConstPtr& msg)
 {
- 
   //Convert to cv image
   cv_bridge::CvImagePtr cv_ptr;
   try
