@@ -150,7 +150,7 @@ void SubscribeNode::configCallback(template_package::SubscribeNodeDynCfgConfig
 ******************************************************************************/
 
 ///////////////////////////////////////////////////////////////////////
-// int_message_callback: Function to dispaly integer message received
+// int_message_callback: Function to display integer message received
 ///////////////////////////////////////////////////////////////////////
 void SubscribeNode::int_message_callback(const std_msgs::Int32::ConstPtr &msg)
 {
@@ -219,19 +219,11 @@ void SubscribeNode::img_message_callback(const sensor_msgs::ImageConstPtr& msg)
   int y_sum = 0;
   for( size_t i = 0; i< contours.size(); i++ )
     {
-      cv::Scalar color = cv::Scalar(255,255,0);
+      cv::Scalar color = cv::Scalar(0, 255,255);
       cv::drawContours( drawing, contours_poly, (int)i, color );
       cv::rectangle( drawing, boundRect[i].tl(), boundRect[i].br(), color, 2 );
-
-      int xc = int ((boundRect[i].tl().x+boundRect[i].br().x)/2);
-      int yc = int ((boundRect[i].tl().y+boundRect[i].br().y)/2);
-      x_sum += xc;
-      y_sum += yc;
-      cv::circle(drawing,cv::Point(xc,yc), 5, color, 2 );
+      circle( drawing, centers[i], (int)radius[i], color, 2 );
     }
-
-  ROS_INFO("%d, %d", int (x_sum/(1.0*contours.size())),
-	   int (y_sum/(1.0*contours.size())) );
   
   // Show preview window
   cv::imshow(CVWIN_PREVIEW, drawing);

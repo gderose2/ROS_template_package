@@ -1,0 +1,11 @@
+<launch>
+
+    <!-- Launch dynamic reconfigure -->
+    <node pkg="rqt_reconfigure" type="rqt_reconfigure" name="rqt_console" args="-t"/>
+
+    <node name="publish_node" pkg="template_package" type="publisher_py.py" output="screen"/>
+
+    <node name="subscribe_node" pkg="template_package" type="subscriber_py.py" output="screen"/>	
+
+
+</launch>
